@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUKUMPEE Time Capsule</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="overlay" class="overlay" style="display: none;"></div>
+
+    <div id="loginPage" class="container" style="left: 50px; top: 50px;">
+        <h2>ล็อกอิน</h2>
+        <form id="loginForm">
+            <input type="text" id="loginUsername" placeholder="ชื่อผู้ใช้"><br>
+            <input type="password" id="loginPassword" placeholder="รหัสผ่าน"><br>
+            <button type="button" onclick="login()">เข้าสู่ระบบ</button>
+            <button type="button" onclick="register()">สมัครสมาชิก</button>
+        </form>
+    </div>
+
+    <div id="serverLoginPage" class="container" style="display: none; left: 150px; top: 150px;">
+        <h2>ล็อกอินเซิร์ฟเวอร์</h2>
+        <p>กรุณาล็อกอินเพื่อโพสต์สาธารณะหรือคอมเมนต์</p>
+        <form id="serverLoginForm">
+            <input type="text" id="serverUsername" placeholder="ชื่อผู้ใช้"><br>
+            <input type="password" id="serverPassword" placeholder="รหัสผ่าน"><br>
+            <button type="button" onclick="serverLogin()">เข้าสู่ระบบ</button>
+            <button type="button" onclick="serverRegister()">สมัครสมาชิก</button>
+            <button type="button" onclick="closeServerLogin()">ยกเลิก</button>
+        </form>
+    </div>
+
+    <div id="mainPage" class="container" style="left: 100px; top: 100px;">
+        <h2>บันทึกข้อความ</h2>
+        <h2>#PUK Time Capsule</h2>
+        <p>ยินดีต้อนรับ, <span id="currentUser"></span> <button onclick="logout()">ออกจากระบบ</button></p>
+        <button onclick="arrangePosts()">จัดเรียงอัตโนมัติ</button>
+        
+        <div class="tab-buttons">
+            <button onclick="switchTab('createTab')" class="active">สร้างโพสต์</button>
+            <button onclick="switchTab('viewTab')">โพสต์ส่วนตัว</button>
+            <button onclick="switchTab('publicTab')">โพสต์สาธารณะ</button>
+        </div>
+
+        <div id="createTab" class="tab-content active">
+            <textarea id="message" rows="4" placeholder="พิมพ์ข้อความที่นี่..."></textarea><br>
+            <input type="file" id="image" accept="image/*"><br>
+            <label><input type="checkbox" id="isPublic"> โพสต์สาธารณะ</label><br>
+            <button onclick="createPost()">โพสต์</button>
+        </div>
+
+        <div id="viewTab" class="tab-content">
+            <table class="post-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>เนื้อหา</th>
+                        <th>รูปภาพ</th>
+                        <th>เวลา</th>
+                        <th>วิว</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody id="postTableBody"></tbody>
+            </table>
+            <div id="pagination" class="pagination"></div>
+        </div>
+
+        <div id="publicTab" class="tab-content">
+            <table class="post-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ผู้เขียน</th>
+                        <th>เนื้อหา</th>
+                        <th>รูปภาพ</th>
+                        <th>เวลา</th>
+                        <th>วิว</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody id="publicTableBody"></tbody>
+            </table>
+            <div id="publicPagination" class="pagination"></div>
+        </div>
+
+        <div id="posts" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
