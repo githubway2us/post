@@ -1,10 +1,11 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js", // เปลี่ยนจาก index.js เป็น server.js
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "yarn install" // เพิ่ม build script สำหรับ Render
   },
   "keywords": [],
   "author": "",
