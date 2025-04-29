@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: your-app-name
+    env: node
+    branch: master
+    repo: https://github.com/githubway2us/post
+    rootDir: server
+    buildCommand: yarn install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 22.14.0
+      - key: JWT_SECRET
+        value: your-secret-key
+      - key: SESSION_SECRET
+        value: your-secret-key
+    preBuildCommand: |
+      apt-get update
+      apt-get install -y python3 make g++
